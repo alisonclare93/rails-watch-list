@@ -3,15 +3,13 @@
 <ul>
   <% @list.movies.each do |movie| %>
     <% bookmark = Bookmark.find_by(list: @list, movie: movie) %>
-    <li> <%= movie.title %> </li>
+    <li> <h3> <%= movie.title %> </h3> </li>
     <li>
-      <% movie.bookmarks.each do |bookmark| %>
-        <%= bookmark.comment %>
-      <% end %>
+      <%= bookmark.comment %> <%= link_to 'Delete Bookmark', bookmark_path(bookmark), method: :delete, data: { confirm: 'Do you really want to?' } %>
     </li>
   <% end %>
 </ul>
 
-<%= render 'bookmarks/new', list: @list %>
+<%= link_to 'New bookmark', new_list_bookmark_path(@list) %>
 
 <%= link_to 'Back', lists_path %>
