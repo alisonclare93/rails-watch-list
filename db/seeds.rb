@@ -9,7 +9,8 @@ require 'json'
 require 'open-uri'
 # instead of doing db:drop - this will clear data before creating again
 Movie.destroy_all
-puts "deleting movies"
+List.destoy_all
+puts "deleting movies and lists"
 
 url = 'http://tmdb.lewagon.com/movie/top_rated'
 movie_serialized = URI.open(url).read
