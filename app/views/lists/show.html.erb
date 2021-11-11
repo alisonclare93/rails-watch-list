@@ -4,7 +4,14 @@
   <% @list.movies.each do |movie| %>
     <% bookmark = Bookmark.find_by(list: @list, movie: movie) %>
     <li> <%= movie.title %> </li>
+    <li>
+      <% movie.bookmarks.each do |bookmark| %>
+        <%= bookmark.comment %>
+      <% end %>
+    </li>
   <% end %>
 </ul>
 
-<%= render 'bookmarks/new'  %>
+<%= render 'bookmarks/new', list: @list %>
+
+<%= link_to 'Back', lists_path %>
