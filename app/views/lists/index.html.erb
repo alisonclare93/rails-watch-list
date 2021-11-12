@@ -1,11 +1,18 @@
 <h1>Lists</h1>
 
-<ul>
-  <% @lists.each do |list| %>
-    <li>
-    <%= link_to list.name, list_path(list) %>
-    </li>
+
+<% @lists.each do |list| %>
+
+  <% if list.photo.attached? %>
+    <% background_image_url = cl_image_path list.photo.key, height: 300, crop: :fill %>
+  <% else %>
+    <% background_image_url = "https://unsplash.com/photos/atsUqIm3wxo" %>
   <% end %>
-</ul>
+
+  <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= background_image_url %>)">
+  <%= link_to list.name, list_path(list) %>
+  </div>
+<% end %>
+
 
 <%= link_to 'Create list', new_list_path %>

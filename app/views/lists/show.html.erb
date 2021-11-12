@@ -1,14 +1,18 @@
 <h1> <%= @list.name %> </h1>
 
-<ul>
-  <% @list.movies.each do |movie| %>
-    <% bookmark = Bookmark.find_by(list: @list, movie: movie) %>
-    <li> <h3> <%= movie.title %> </h3> </li>
-    <li>
+
+<% @list.movies.each do |movie| %>
+  <% bookmark = Bookmark.find_by(list: @list, movie: movie) %>
+
+  <div class="card-product">
+    <h3> <%= movie.title %> </h3>
+    <p>
       <%= bookmark.comment %> <%= link_to 'Delete Bookmark', bookmark_path(bookmark), method: :delete, data: { confirm: 'Do you really want to?' } %>
-    </li>
-  <% end %>
-</ul>
+    </p>
+  </div>
+
+<% end %>
+
 
 <%= link_to 'New bookmark', new_list_bookmark_path(@list) %>
 
