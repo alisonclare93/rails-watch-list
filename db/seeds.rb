@@ -9,7 +9,7 @@ require 'json'
 require 'open-uri'
 # instead of doing db:drop - this will clear data before creating again
 Movie.destroy_all
-List.destoy_all
+List.destroy_all
 puts "deleting movies and lists"
 
 url = 'http://tmdb.lewagon.com/movie/top_rated'
